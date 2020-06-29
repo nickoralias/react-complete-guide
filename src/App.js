@@ -66,7 +66,7 @@ const App = props => {
       <div>
         {peopleState.people.map((person, index) => {
           return <Person
-            click={deletePersonHandler}
+            click={() => deletePersonHandler(index)}
             name={person.name}
             age={person.age}
             key={person.id}
@@ -80,7 +80,6 @@ const App = props => {
     <div className="App">
       <h1>Hi, this is a React App</h1>
       <button
-        click={deletePersonHandler}
         style={style}
         onClick={togglePeopleHandler}>Toggle People</button>
       {people}
