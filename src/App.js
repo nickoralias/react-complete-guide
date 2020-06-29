@@ -12,7 +12,7 @@ const App = props => {
     showPeople: false
   });
 
-  const [otherState, setOtherState] = useState('some other value');
+  // const [otherState, setOtherState] = useState('some other value');
 
   const switchNameHandler = (newName) => {
     // console.log('Was clicked!');
@@ -52,28 +52,33 @@ const App = props => {
     cursor: 'pointer'
   };
 
+  let people = null;
+
+  if (peopleState.showPeople) {
+    people = (
+      <div>
+        <Person
+          name={peopleState.people[0].name}
+          age={peopleState.people[0].age} />
+        <Person
+          name={peopleState.people[1].name}
+          age={peopleState.people[1].age}
+          changed={nameChangedHandler}
+          click={switchNameHandler.bind(this, 'Nick!')}>My Hobbies: Racing</Person>
+        <Person
+          name={peopleState.people[2].name}
+          age={peopleState.people[2].age} />
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <h1>Hi, this is a React App</h1>
       <button
         style={style}
         onClick={togglePeopleHandler}>Toggle People</button>
-      {
-        peopleState.showPeople ?
-          <div>
-            <Person
-              name={peopleState.people[0].name}
-              age={peopleState.people[0].age} />
-            <Person
-              name={peopleState.people[1].name}
-              age={peopleState.people[1].age}
-              changed={nameChangedHandler}
-              click={switchNameHandler.bind(this, 'Nick!')}>My Hobbies: Racing</Person>
-            <Person
-              name={peopleState.people[2].name}
-              age={peopleState.people[2].age} />
-          </div> : null
-      }
+      {people}
     </div>
   );
 };
