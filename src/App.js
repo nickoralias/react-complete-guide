@@ -14,18 +14,6 @@ const App = props => {
 
   // const [otherState, setOtherState] = useState('some other value');
 
-  const switchNameHandler = (newName) => {
-    // console.log('Was clicked!');
-    // DON'T DO THIS: this.state.people[0].name = 'Nicholas';
-    setPeopleState({
-      people: [
-        { name: newName, age: 29 },
-        { name: "Manu", age: 29 },
-        { name: "Stephanie", age: 27 },
-      ]
-    });
-  };
-
   const nameChangedHandler = (event) => {
     setPeopleState({
       people: [
@@ -34,6 +22,13 @@ const App = props => {
         { name: "Stephanie", age: 27 },
       ]
     });
+  }
+
+  const deletePersonHandler = (personIndex) => {
+    // const people = peopleState.people.slice();
+    const people = [...peopleState.people];
+    people.splice(personIndex, 1);
+    setPeopleState({people: people, showPeople: peopleState.showPeople});
   }
 
   const togglePeopleHandler = () => {
@@ -57,8 +52,9 @@ const App = props => {
   if (peopleState.showPeople) {
     people = (
       <div>
-        {peopleState.people.map(person => {
+        {peopleState.people.map((person, index) => {
           return <Person
+            click={deletePersonHandler}
             name={person.name}
             age={person.age} />
         })}
@@ -70,6 +66,7 @@ const App = props => {
     <div className="App">
       <h1>Hi, this is a React App</h1>
       <button
+        click={deletePersonHandler}
         style={style}
         onClick={togglePeopleHandler}>Toggle People</button>
       {people}
