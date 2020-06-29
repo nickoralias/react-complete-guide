@@ -57,17 +57,11 @@ const App = props => {
   if (peopleState.showPeople) {
     people = (
       <div>
-        <Person
-          name={peopleState.people[0].name}
-          age={peopleState.people[0].age} />
-        <Person
-          name={peopleState.people[1].name}
-          age={peopleState.people[1].age}
-          changed={nameChangedHandler}
-          click={switchNameHandler.bind(this, 'Nick!')}>My Hobbies: Racing</Person>
-        <Person
-          name={peopleState.people[2].name}
-          age={peopleState.people[2].age} />
+        {peopleState.people.map(person => {
+          return <Person
+            name={person.name}
+            age={person.age} />
+        })}
       </div>
     );
   }
