@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import Person from "./Person/Person";
 
 const App = props => {
@@ -97,14 +97,16 @@ const App = props => {
   }
 
   return (
-    <div className="App">
-      <h1>Hi, this is a React App</h1>
-      <p className={classes.join(' ')}>This is really working!</p>
-      <button
-        style={style}
-        onClick={togglePeopleHandler}>Toggle People</button>
-      {people}
-    </div>
+    <StyleRoot>
+      <div className="App">
+        <h1>Hi, this is a React App</h1>
+        <p className={classes.join(' ')}>This is really working!</p>
+        <button
+          style={style}
+          onClick={togglePeopleHandler}>Toggle People</button>
+        {people}
+      </div>
+    </StyleRoot>
   );
 };
 
