@@ -1,21 +1,7 @@
 import React, { useState } from "react";
-import styled from 'styled-components';
-import "./App.css";
-import Person from "./Person/Person";
 
-const StyledButton = styled.button`
-  background-color: ${props => props.alt? 'red': 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon': 'lightgreen'};
-    color: black;
-  }
-`
+import classes from "./App.module.css";
+import Person from "./Person/Person";
 
 const App = props => {
   const [ peopleState, setPeopleState ] = useState({
@@ -66,20 +52,8 @@ const App = props => {
     });
   }
 
-  const style = {
-    backgroundColor: 'green',
-    color: 'white',
-    font: 'inherit',
-    border: '1px solid blue',
-    padding: '8px',
-    cursor: 'pointer',
-    ':hover': {
-      backgroundColor: 'lightgreen',
-      color: 'black'
-    }
-  };
-
   let people = null;
+  let btnClasses = '';
 
   if (peopleState.showPeople) {
     people = (
@@ -95,28 +69,24 @@ const App = props => {
       </div>
     );
 
-    // style.backgroundColor = 'red';
-    // style[':hover'] = {
-    //   backgroundColor: 'salmon',
-    //   color: 'black'
-    // }
+    btnClasses = classes.Red;
   }
 
-  let classes = []
+  const assignedClasses = []
   if (peopleState.people.length <= 2) {
-    classes.push('red'); // classes = ['red']
+    assignedClasses.push(classes.red); // classes = ['red']
   }
   if (peopleState.people.length <= 1) {
-    classes.push('bold'); // classes = ['red', 'bold']
+    assignedClasses.push(classes.bold); // classes = ['red', 'bold']
   }
 
   return (
-    <div className="App">
+    <div className={classes.App}>
       <h1>Hi, this is a React App</h1>
-      <p className={classes.join(' ')}>This is really working!</p>
-      <StyledButton alt={peopleState.showPeople} onClick={togglePeopleHandler}>
+      <p className={assignedClasses.join(' ')}>This is really working!</p>
+      <button className={btnClasses} onClick={togglePeopleHandler}>
         Toggle People
-      </StyledButton>
+      </button>
       {people}
     </div>
   );
