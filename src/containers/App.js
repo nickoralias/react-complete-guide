@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import classes from "./App.module.css";
-import Person from "./Person/Person";
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+import Person from "../components/People/Person/Person";
 
 const App = props => {
   const [ peopleState, setPeopleState ] = useState({
@@ -59,13 +58,12 @@ const App = props => {
     people = (
       <div>
         {peopleState.people.map((person, index) => {
-          return <ErrorBoundary key={person.id}>
-            <Person
+          return <Person
               click={() => deletePersonHandler(index)}
               name={person.name}
               age={person.age}
+              key={person.id}
               changed={(event) => nameChangedHandler(event, person.id)} />
-          </ErrorBoundary>
         })}
       </div>
     );
