@@ -4,7 +4,7 @@ import classes from "./App.module.css";
 import People from "../components/People/People";
 import Cockpit from '../components/Cockpit/Cockpit';
 
-const App = props => {
+const App = (props) => {
   const [ peopleState, setPeopleState ] = useState({
     people: [
       { id: 'asfa1', name: "Nick", age: 29 },
@@ -67,6 +67,7 @@ const App = props => {
   return (
     <div className={classes.App}>
       <Cockpit
+        title={props.appTitle}
         showPeople={peopleState.showPeople}
         people={peopleState.people}
         clicked={togglePeopleHandler} />
