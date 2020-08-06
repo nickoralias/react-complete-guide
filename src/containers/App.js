@@ -69,7 +69,7 @@ const App = (props) => {
       <Cockpit
         title={props.appTitle}
         showPeople={peopleState.showPeople}
-        people={peopleState.people}
+        peopleLength={peopleState.people.length}
         clicked={togglePeopleHandler} />
       {people}
     </div>
