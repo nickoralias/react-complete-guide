@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import classes from "./App.module.css";
 import People from "../components/People/People";
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Aux';
 
 const App = (props) => {
   const [ peopleState, setPeopleState ] = useState({
@@ -66,15 +67,15 @@ const App = (props) => {
   }
 
   return (
-    <WithClass classes={classes.App}>
+    <Aux>
       <Cockpit
         title={props.appTitle}
         showPeople={peopleState.showPeople}
         peopleLength={peopleState.people.length}
         clicked={togglePeopleHandler} />
       {people}
-    </WithClass>
+    </Aux>
   );
 };
 
-export default App;
+export default withClass(App, classes.App);
