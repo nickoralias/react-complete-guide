@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import classes from "./App.module.css";
 import People from "../components/People/People";
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 
 const App = (props) => {
   const [ peopleState, setPeopleState ] = useState({
@@ -65,14 +66,14 @@ const App = (props) => {
   }
 
   return (
-    <div className={classes.App}>
+    <WithClass classes={classes.App}>
       <Cockpit
         title={props.appTitle}
         showPeople={peopleState.showPeople}
         peopleLength={peopleState.people.length}
         clicked={togglePeopleHandler} />
       {people}
-    </div>
+    </WithClass>
   );
 };
 
